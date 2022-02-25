@@ -1,16 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import BottomNavBar from './Components/NavComponents/BottonNavBar';
 
-import Login from './Components/Auth/Login';
 
-export default function App() {
+const App=()=> {
+  
   return (
-
-        <Login/>
    
+    <BottomNavBar/>
   );
 }
 
-const styles = StyleSheet.create({
-
-});
+export default App;
