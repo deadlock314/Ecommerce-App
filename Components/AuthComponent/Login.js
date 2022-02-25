@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { StyleSheet ,View ,Text, TextInput} from 'react-native';
 import CustomBtn from '../UnitComponent/CustomBtn';
 
-function Login() {
+const Login=({navigation})=> {
 
     const [user,setUser]=useState({email:'',password:''});
     const [loggedInMes ,setLoggedInMes]= useState('');
     
     const loginResHandler=(res)=>{
         if(res.isUserLoggedIn && res.isCorrectPassword)
-            setLoggedInMes('User sucessfullyloggedIn'); 
+            setLoggedInMes('User sucessfully loggedIn'); 
         else if(!res.isCorrectPassword && !res.isCorrectUser)
             setLoggedInMes('Enter correct email and password');
         else if( !res.isUserLoggedIn && !res.isCorrectPassword)
@@ -51,7 +51,8 @@ function Login() {
             <Text style={{color:'#0000dd',marginLeft:15,fontSize:17}} >Forgot your password?</Text>
             <CustomBtn prop={{onPressFun:logInHandler,btnTitle:"Login"}}/>
             <Text style={{marginLeft:15 ,fontSize:20 ,color:'#ff0000'}}>{loggedInMes}</Text>
-            <Text style={{marginLeft:15 ,fontSize:20}}>Didn't have an account? <Text style={{color:'#0000dd'}} >Sign Up</Text> </Text>
+            <Text style={{marginLeft:15 ,fontSize:20}}>Didn't have an account? 
+             <Text style={{color:'#0000dd'}}  onPress={()=>navigation.navigate('signup')} >{` Sign Up`} </Text> </Text>
             
         </View>
     );
