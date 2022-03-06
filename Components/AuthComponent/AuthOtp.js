@@ -1,52 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
 import { StyleSheet ,View ,Text, TextInput} from 'react-native';
-import CustomBtn from '../UnitComponent/CustomBtn';
+import { Postreq } from '../../ApiRequests/APIReqHandler';
+import {CustomBtn } from '../CustomComponent/CustomBtn';
 
-function AuthOtp() {
+const AuthOtp=({navigation,route})=>{
 
-    const [localOtp,setLocalOtp]=useState('');
+    const user=route.params.user;
+
+    const [localOtp,setLocalOtp]=useState();
     const [AuthMes ,setAuthMes] =useState('');
     const [userEmail,setUserEmail]=useState('');
     
-    const authResHandler=(res)=>{
+    const authReqHandler=()=>{
+        setUserEmail(user.email);
+        Postreq("https://ecommerce-app-api-1.herokuapp.com/signup/alphakey",{...user,otp:localOtp}).then((res)=>{
         if(res.isUserAuth && res.isCorrectPassword)
-            setAuthMes('User sucessfully Auth'); 
+            navigation.navigate('profileHome') 
         else if(!res.isCorrectPassword && !res.isCorrectUser)
             setAuthMes('Enter correct otp and password');
         else if( !res.isUserAuth && !res.isCorrectPassword)
             setAuthMes('please enter correct password')
         else
             setAuthMes('something went wrong try please try again');
+        }).catch((err)=>console.log(err))
+
     }
 
-    const authReqHandler= async()=>{   
-        try{
-            const res= await fetch("https://ecommerce-app-api-1.herokuapp.com/signup/alphakey"
-            ,{
-                method:"POST",credentials:'include',
-                headers:{
-                    Accept:"application/json",
-                    'Content-Type':'application/json'
-                },
-                body:JSON.stringify({
-                    ...user,otp:localOtp
-                })
-            })
-            const resObj= await res.json();
-            authResHandler(resObj)
-
-        } catch(err){
-            setAuthMes('something went wrong try please try again');
-            
-        }
-    }
   
-
     return ( 
         <View style={styles.container}>
             <Text style={styles.title}>Email Verification Otp </Text>
-            <TextInput style={styles.input} value={localOtp} onChangeText={(Otp)=>setLocalOtp({Otp}) }/>
+            <TextInput style={styles.input} value={localOtp} keyboardType='numeric' maxLength={6}
+             onChangeText={(Otp)=>setLocalOtp(Otp) } selectionColor={'#000'}/>
             <CustomBtn prop={{onPressFun:authReqHandler,btnTitle:"Verify User"}}/>
+            <Text style={{marginLeft:15 ,fontSize:21, marginBottom:2,color:'#ff0000'}}>{AuthMes}</Text>
             <Text style={styles.text} >We just send your OTP via your Email <Text style={{color:'#00f'}} >{userEmail}</Text> </Text>
             <Text style={styles.text}>The OTP will expire soon </Text>
             <CustomBtn prop={{onPressFun:'',btnTitle:"Resend OTP"}}/>
@@ -54,7 +41,6 @@ function AuthOtp() {
         </View>
     );
 }
-
 
 const styles=StyleSheet.create({
     container: {
@@ -73,7 +59,11 @@ const styles=StyleSheet.create({
         height:40,
         borderRadius:10,
         marginBottom:10,
-        fontSize:20
+        fontSize:20,
+        textAlignVertical: 'center',
+        padding:10,
+        textAlign:'center'
+     
     },
     text:{
         marginLeft:15 
