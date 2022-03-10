@@ -1,26 +1,27 @@
 import React from 'react';
-import { Image,TouchableOpacity ,View,Text ,StyleSheet, Touchable} from 'react-native';
-
+import { Image,TouchableOpacity ,View,Text ,StyleSheet} from 'react-native';
 const ProductType=({props})=> {
 
+    const imgArr={laptops:require(`../../assets/laptops.jpg`) ,earphones:require(`../../assets/earphones.jpg`)
+                 ,mobiles: require(`../../assets/mobiles.jpg`),smartwatches:require(`../../assets/smartwatches.jpg`)}
+    const capitalize=s=>s && s[0].toUpperCase() + s.slice(1);  
     return(
 
     <View style={styles.container} >
         <TouchableOpacity onPress={()=>props.navi.navigate('productStruct',{productType:props.name})}>
-            {/* <Image source={{uri:props.imgLink}}/> */}
-        <Text style={styles.productTitle}>{props.name}</Text>
+            <Image source={imgArr[props.name.replace(' ','')]} style={styles.productTmage}/>
+            <Text style={styles.productTitle}>{capitalize(props.name)}</Text>
        </TouchableOpacity>
     </View>  
 
     );
 }
 
-const width="45%"
 const styles=StyleSheet.create({
     container:{
         backgroundColor:'#fff',
         height:295,
-        width:width,
+        width:'45%',
         marginTop:10,
         marginLeft:10,
         borderRadius:15,
@@ -30,6 +31,15 @@ const styles=StyleSheet.create({
         alignSelf:'center',
         fontSize:20,
         color:'#000'
+        ,
+        marginTop:20
+    },
+    productTmage:{
+        width:'80%',
+        height:100,
+        alignSelf:'center',
+        resizeMode:'stretch',
+        marginTop:40
     }
     
 })

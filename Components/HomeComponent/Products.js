@@ -19,13 +19,12 @@ const Products=({navigation})=> {
                         <Ionicons name={'help-circle-outline'} size={36} color={'#fff'} />
                         </View>
                     </TouchableOpacity>
-                    
-                    
                 </View>
                 <View style={styles.productsContainer}>
                     <ProductType props={{name:"laptops",navi:navigation}}  />
                     <ProductType props={{name:"mobiles" ,navi:navigation}} />
                     <ProductType props={{name:"earphones", navi:navigation}} />
+                    <ProductType props={{name:"smart watches", navi:navigation}} />
                 </View>
             </View>
         );
