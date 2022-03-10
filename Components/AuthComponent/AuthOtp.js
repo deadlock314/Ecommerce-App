@@ -15,7 +15,7 @@ const AuthOtp=({navigation,route})=>{
         setUserEmail(user.email);
         Postreq("https://ecommerce-app-api-1.herokuapp.com/signup/alphakey",{...user,otp:localOtp}).then((res)=>{
         if(res.isUserAuth && res.isCorrectPassword)
-            navigation.navigate('profileHome') 
+            navigation.navigate('profileHome',{email:user.email}) 
         else if(!res.isCorrectPassword && !res.isCorrectUser)
             setAuthMes('Enter correct otp and password');
         else if( !res.isUserAuth && !res.isCorrectPassword)

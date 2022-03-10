@@ -34,6 +34,7 @@ const Postreq= async(url,data)=>{
         return resJson
 
     } catch(err){
+        console.log(err);
         return {isError:tue}
     }
 
