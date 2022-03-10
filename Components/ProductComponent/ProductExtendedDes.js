@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { Text, View } from 'react-native';
-import { GetReq } from '../ApiRequests/APIReqHandler';
+import { GetReq } from '../../ApiRequests/APIReqHandler';
 
 const ProductExtendedDes = ({prop}) => {
 
@@ -12,8 +12,9 @@ const ProductExtendedDes = ({prop}) => {
     (  async () => {
         try {
           const res = await GetReq(`https://ecommerce-app-api-1.herokuapp.com/singleproductexdes/${prop.productType}/${prop.productId}`)
-          setExdes(res.extendedDes);
+          setExdes(res.extendedDes || []);
           setLoading(false)
+          
         }
       catch (err) {
         console.log(err);
