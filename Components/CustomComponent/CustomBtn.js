@@ -14,12 +14,27 @@ function CustomBtn({prop}) {
 const CustomInfoBtn=({prop})=>{
     return (
          <TouchableOpacity onPress={prop.onPressFun} >
-                <View style={{...styles.btn,height:42,paddingTop:7,width:125}} >
+                <View style={{...styles.btn,height:42,paddingTop:6,width:125}} >
                     <Text style={{...styles.btnText,fontSize:20}}>{ prop.btnTitle}</Text>
                 </View>
         </TouchableOpacity>
     )
 }
+
+
+
+const CustomCountBtn=({prop})=> {
+    return (
+        <TouchableOpacity onPress={prop.onPressFun}>
+            <View style={{...styles.btn,height:30,width:39,marginTop:0}} >
+                <Text style={{...styles.btnText,
+        fontSize:22 }}>{ prop.btnTitle}</Text>
+            </View>
+        </TouchableOpacity>
+    );
+}
+
+export default CustomBtn;
 
 const styles=StyleSheet.create({
     btn:{
@@ -37,4 +52,4 @@ const styles=StyleSheet.create({
     }
 })
 
-export {CustomBtn,CustomInfoBtn} ;
+export {CustomBtn,CustomInfoBtn,CustomCountBtn} ;

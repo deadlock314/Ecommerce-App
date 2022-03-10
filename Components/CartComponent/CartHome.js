@@ -1,37 +1,57 @@
-import { View ,Text ,ScrollView,StyleSheet,Image } from 'react-native';
 
-const CartHome=({route})=> {
+import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import { useSelector } from 'react-redux';
+import CartStructBtn from './CartStructBtn';
+import CartCalc from './CartCalc';
+const CartHome = () => {
 
-    const product=route.params;
-    return ( 
+    const product = useSelector((state) => state.cartData.prevCartData);
+    return (
         <ScrollView>
-           <View style={{flexDirection:'row',marginTop:60,}}>
-           <Image style={{...styles.productImage,width:130,height:110}} source={{uri:product.imgLink}} />
-           <View style={{flex:1.8}}>
-              <Text  style={styles.productDes}>{product.des}</Text>
-              <Text  style={styles.productPrice}>{product.price}</Text> 
-           </View>
-           </View>
-           
+            {
+                (product) ? <View style={{marginTop:40 }}>
+                    {
+                        product.map((p) => {
+                            return (
+                                <View key={p._id} style={{backgroundColor:'#fff' }} >
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <Image style={{ ...styles.productImage, width: 110, height: 95 }} source={{ uri: p.imgLink }} />
+                                        <View style={{ flex: 1.8 }}>
+                                            <Text style={styles.productDes}>{p.des}</Text>
+                                            <Text style={styles.productPrice}>{p.price}</Text>
+                                        </View>
+                                    </View>
+
+                                    <CartStructBtn props={{_id:p._id,price:p.price}}/>
+                                </View>
+                            )
+                        })
+                    }
+                    <CartCalc />
+                </View> :
+                    <View>
+
+                    </View>
+            }
         </ScrollView>
     );
 }
 
-const styles=StyleSheet.create({
-    productImage:{
-        marginTop:13,
-        resizeMode:'stretch'
-     },
-  
-     productDes:{
-         fontSize:15,
-         marginLeft:10
-     },
-     productPrice:{
-         fontSize:26,
-        alignSelf:'center'
-     },
- 
+const styles = StyleSheet.create({
+    productImage: {
+        marginTop: 2,
+        resizeMode: 'stretch'
+    },
+
+    productDes: {
+        fontSize: 15,
+        marginLeft: 10
+    },
+    productPrice: {
+        fontSize: 26,
+        marginLeft: 27
+    },
+
 })
 
 export default CartHome;
