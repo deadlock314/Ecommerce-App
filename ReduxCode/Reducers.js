@@ -7,9 +7,9 @@ export const UserAuthSlice=createSlice({
         userData:{}
     },
     reducers:{
-        changeUserAuth:(state,action) => {return {...state,value:action.payload}},
-        modifyUserData:(state,action)=>{
-            return {...state,value:action.payload}
+        changeUserAuth:(state,action) => {return {...current(state),value:action.payload}},
+        setUserData:(state,action)=>{
+            return { ...current(state),userData:action.payload}
         }
     }
 })
@@ -36,5 +36,5 @@ export const PrevCartDataSlice=createSlice({
 
 })
 
-export const {changeUserAuth,modifyUserData}=UserAuthSlice.actions;
+export const {changeUserAuth,setUserData}=UserAuthSlice.actions;
 export const {updateCartData,updatePrice,removeCartData}=PrevCartDataSlice.actions;
