@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { priceAdder } from '../../HelperFunctions/priceAdder';
 import { removeCartData, updatePrice } from '../../ReduxCode/Reducers';
-import { CustomInfoBtn, CustomCountBtn } from '../CustomComponent/CustomBtn';
+import {  CustomCountBtn } from '../CustomComponent/CustomBtn';
 
 const CartStructBtn = ({ props }) => {
 

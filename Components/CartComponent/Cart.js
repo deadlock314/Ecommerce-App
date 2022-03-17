@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import BuyingPage from './BuyingPage';
+import BuyingPage from '../BuyingComponents/BuyingPage';
+
 import CartHome from './CartHome';
 
-const Stack=createNativeStackNavigator()
+const Stack=createNativeStackNavigator();
 
 const Cart=()=>{
     return (
