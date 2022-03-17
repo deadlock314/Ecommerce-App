@@ -26,9 +26,9 @@ const CustomInfoBtn=({prop})=>{
 const CustomCountBtn=({prop})=> {
     return (
         <TouchableOpacity onPress={prop.onPressFun}>
-            <View style={{...styles.btn,height:30,width:39,marginTop:0}} >
+            <View style={{...styles.btn,height:32, width:prop.width,marginTop:0}} >
                 <Text style={{...styles.btnText,
-        fontSize:22 }}>{ prop.btnTitle}</Text>
+        fontSize:20 }}>{ prop.btnTitle}</Text>
             </View>
         </TouchableOpacity>
     );
@@ -40,7 +40,7 @@ const styles=StyleSheet.create({
     btn:{
         height:40,
         borderRadius:10,
-        marginTop:10,
+        marginTop:8,
         marginBottom:7,
         backgroundColor:'#ff6719',
         
@@ -48,7 +48,8 @@ const styles=StyleSheet.create({
     btnText:{
         textAlign:'center',
         fontSize:25,
-        color:'#fff'
+        color:'#fff',
+        marginTop:2
     }
 })
 
