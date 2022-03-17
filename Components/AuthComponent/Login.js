@@ -43,11 +43,12 @@ const Login=({navigation})=> {
         <View style={styles.container}>
 
             <Text style={styles.textLabel}>Email :</Text>
-            <TextInput style={styles.input} value={user.email} onChangeText={(email)=>setUser({...user,email})} selectionColor='#000'/>
+            <TextInput style={styles.input} value={user.email} onChangeText={(email)=>setUser({...user,email}) }selectionColor='#000'/>
             <Text style={styles.textLabel}>Password :</Text>
             <TextInput style={styles.input}  secureTextEntry={true}  value={user.password}
                 onChangeText={(password)=>setUser({...user,password})} selectionColor='#000'/>
             <Text style={{color:'#0000dd',marginLeft:15,fontSize:19}} >Forgot your password?</Text>
+            
             <CustomBtn prop={{onPressFun:logInHandler,btnTitle:"Login"}}/>
             {
                (loggedInMes)? <Text style={styles.authMes}>{loggedInMes}</Text>:<View/>
