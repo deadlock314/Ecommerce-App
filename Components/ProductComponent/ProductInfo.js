@@ -9,6 +9,8 @@ const ProductInfo = ({ navigation, route }) => {
     const product = route.params;
 
     const CartData = useSelector((s) => s.cartData);
+    const AuthStatus=useSelector(s=>s.userAuth.value);
+console.log(AuthStatus);
     const dispatch = useDispatch();
 
     const AddtoCartHandler = () => {
@@ -27,11 +29,13 @@ const ProductInfo = ({ navigation, route }) => {
                 countObj:{id:product._id,count:1}
             }));
         }
-        navigation.navigate('cartHome')
+        navigation.navigate('cart', { screen: 'cartHome'})
     }
 
 
-    const BuyNowHandler = () => navigation.navigate('cart', { screen: 'cartHome', ...product })
+    const BuyNowHandler = () =>  
+        (AuthStatus) ? navigation.navigate('cart', { screen: 'buyingPage',params:{...product}} ) : navigation.navigate('profile',{screen:'login'}) 
+  
 
     return (
         <ScrollView>
