@@ -26,7 +26,7 @@ const CustomInfoBtn=({prop})=>{
 const CustomCountBtn=({prop})=> {
     return (
         <TouchableOpacity onPress={prop.onPressFun}>
-            <View style={{...styles.btn,height:32, width:prop.width,marginTop:0}} >
+            <View style={{...styles.btn,height:34, width:prop.width,marginTop:0}} >
                 <Text style={{...styles.btnText,
         fontSize:20 }}>{ prop.btnTitle}</Text>
             </View>

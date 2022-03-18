@@ -14,7 +14,8 @@ const Login=({navigation})=> {
     const dispatch=useDispatch();
 
     const logInHandler=()=>{
-
+        setLoggedInMes("Logging ...")
+        
         Postreq("https://ecommerce-app-api-1.herokuapp.com/login",{ email:user.email, password:user.password}).then((res)=>{
         if(res.isUserLoggedIn && res.isCorrectPassword){
             setLoading(true);
